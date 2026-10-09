@@ -499,3 +499,5 @@ pass.bak
 jan@ip-10-114-184-69:/home/kay$ cat pass.bk
 cat: pass.bk: No such file or directory
 jan@ip-10-114-184-69:/home/kay$ ssh kay@10.10.50.222
+kay@basic2:~$ cat pass.bak 
+heresareallystrongpasswordthatfollowsthepasswordpolicy$$
